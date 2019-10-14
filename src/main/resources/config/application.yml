@@ -1,0 +1,25 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+
+server:
+  connection-timeout: 5s
+  port: 8080
+  tomcat:
+    accesslog:
+      directory: ${LOGGING_PATH:-.}
+      pattern: "%t %D %s %b %a %m %U %q \"%{Referer}i\" \"%{User-Agent}i\""
+      rename-on-rotate: true
+      enabled: true
+
+cache:
+  maxSize: 10000
+  expirationInMin: 1440 # 1 day
+  initialSize: 2000
