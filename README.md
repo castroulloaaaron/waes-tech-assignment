@@ -17,6 +17,26 @@ your coding skills and what you value in software engineering.
     * If of same size provide insight in where the diffs are, actual diffs are not needed.
         * So mainly offsets + length in the data 
 
+Preconditions
+-------------
+
+1. [Install maven][0]
+2. Install jdk 11 or up
+3. (Optional) [Install Postman][1]
+
+Common Operations
+-----------------
+
+1. Run Unit Test: 
+```shell script
+mvn clean test
+```
+
+2. Run Application
+```shell script
+mvn clean spring-boot:run 
+```
+
 Useful URL
 ----------
 
@@ -34,3 +54,8 @@ Assumptions
 
 Improvements
 ------------
+
+
+
+[0]: https://maven.apache.org/
+[1]: https://www.getpostman.com
