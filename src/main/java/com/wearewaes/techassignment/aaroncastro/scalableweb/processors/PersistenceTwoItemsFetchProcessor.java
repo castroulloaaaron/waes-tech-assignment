@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.LEFT;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.RIGHT;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
@@ -58,8 +58,8 @@ public class PersistenceTwoItemsFetchProcessor extends AbstractProcessor {
             throw new IllegalArgumentException("the right JSON object with id: " + id + ", was not persisted");
         }
 
-        params.put(LEFT, extractBody(persistenceStorage.get(leftId).orElse(null), LEFT, id));
-        params.put(RIGHT, extractBody(persistenceStorage.get(rightId).orElse(null), RIGHT, id));
+        params.put(LEFT.toString(), extractBody(persistenceStorage.get(leftId).orElse(null), LEFT.toString(), id));
+        params.put(RIGHT.toString(), extractBody(persistenceStorage.get(rightId).orElse(null), RIGHT.toString(), id));
 
         return params;
     }

@@ -1,4 +1,4 @@
-package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json;
+package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

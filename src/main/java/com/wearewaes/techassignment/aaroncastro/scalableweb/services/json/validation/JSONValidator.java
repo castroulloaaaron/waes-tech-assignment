@@ -1,4 +1,4 @@
-package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json;
+package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation;
 
 /**
  * It contains a single method that transforms a String to the Jackson JsonNode implementation if the body is valid

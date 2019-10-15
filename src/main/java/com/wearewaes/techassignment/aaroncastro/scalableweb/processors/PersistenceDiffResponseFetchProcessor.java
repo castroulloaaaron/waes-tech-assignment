@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.DiffResultContainer.RESULT;
 import static org.apache.commons.lang3.Validate.*;
 
 /**
@@ -39,10 +38,9 @@ public class PersistenceDiffResponseFetchProcessor extends AbstractProcessor {
         notEmpty(params.get(ID).toString(), "id must not be null");
 
         final String id = params.get(ID).toString();
-        final String persistenceId = RESULT + id;
 
-        if (persistenceStorage.hasId(persistenceId)) {
-            params.put(STOP_FLAG, extractResult(persistenceStorage.get(persistenceId).orElse(null), id));
+        if (persistenceStorage.hasId(id)) {
+            params.put(STOP_FLAG, extractResult(persistenceStorage.get(id).orElse(null), id));
         }
 
         return params;

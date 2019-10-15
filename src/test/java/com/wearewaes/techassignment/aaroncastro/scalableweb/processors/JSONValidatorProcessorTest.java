@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.JSONValidator;
+import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation.JSONValidator;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Map;

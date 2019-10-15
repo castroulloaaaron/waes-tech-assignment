@@ -1,5 +1,6 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json;
 
+import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation.JSONValidatorService;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

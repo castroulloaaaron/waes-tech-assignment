@@ -1,6 +1,6 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
-import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.JSONValidator;
+import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation.JSONValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

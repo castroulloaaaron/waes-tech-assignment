@@ -1,8 +1,22 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence;
 
 public interface TwoItemsContainer extends PersistenceModel {
-    String LEFT = "left-";
-    String RIGHT = "right-";
+
+    enum Sides {
+        LEFT("left-"),
+        RIGHT("right-");
+
+        private final String id;
+
+        Sides(final String id) {
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            return id;
+        }
+    }
 
     String getId();
     String getBody();

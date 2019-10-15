@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.LEFT;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.RIGHT;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT;
 import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.BODY;
 import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ID;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
