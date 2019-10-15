@@ -17,9 +17,9 @@ import static org.apache.commons.lang3.Validate.*;
 @Component
 public class PersistencePersistProcessor extends  AbstractProcessor {
 
-    @Autowired
     private final PersistenceStorage persistenceStorage;
 
+    @Autowired
     public PersistencePersistProcessor(final PersistenceStorage persistenceStorage) {
         this.persistenceStorage = persistenceStorage;
     }

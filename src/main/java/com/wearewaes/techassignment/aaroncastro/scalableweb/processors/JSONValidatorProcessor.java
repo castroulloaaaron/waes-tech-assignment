@@ -17,9 +17,9 @@ import static org.apache.commons.lang3.Validate.notNull;
 @Component
 public class JSONValidatorProcessor extends AbstractProcessor {
 
-    @Autowired
     private final JSONValidator jsonValidator;
 
+    @Autowired
     public JSONValidatorProcessor(final JSONValidator jsonValidator) {
         this.jsonValidator = jsonValidator;
     }

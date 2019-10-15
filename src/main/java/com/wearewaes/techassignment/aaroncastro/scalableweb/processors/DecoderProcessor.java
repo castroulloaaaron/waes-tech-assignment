@@ -17,9 +17,9 @@ import static org.apache.commons.lang3.Validate.notNull;
 @Component
 public class DecoderProcessor extends AbstractProcessor {
 
-    @Autowired
     private final Base64Decoder base64Decoder;
 
+    @Autowired
     public DecoderProcessor(final Base64Decoder base64Decoder) {
         this.base64Decoder = base64Decoder;
     }
