@@ -27,18 +27,18 @@ Preconditions
 Common Operations
 -----------------
 
-1. Run Unit Test: 
+1. Run All Unit Test using maven 
 ```shell script
 mvn clean test
 ```
 
-2. Run Application
+2. Run the application using maven
 ```shell script
 mvn clean spring-boot:run 
 ```
 
-Useful URL
-----------
+Useful application urls
+-----------------------
 
 1. Swagger JSON Endpoints:
     * http://localhost:8080/v2/api-docs
@@ -47,15 +47,22 @@ Useful URL
 2. Actuator
     * http://localhost:8080/actuator
 
-
 Assumptions
 -----------
+1. The user will use Content-Type text/plain and will Accept application/JSON
+2. The application won't require Cross-Domain Headers from the application
 
-
-Improvements
-------------
-
-
+Possible Improvements (the nice to have list)
+--------------------------------------------
+1. Use a durable storage (like a data-base or NoSQL)
+2. Allow customization logging configuration file (loaded using a parameter when the application starts)
+3. Allow customizable configuration file (loaded using a parameter when the application starts)
+4. Include Cross-Domain headers
+5. Security can be include: token base or with a login page (using any secure persistence storage to authenticate/authorize)
+6. An UI can be added to show the differences between JSON Objects
+7. Service discovery can be include
+8. The circuit breaker, throttling patterns can be implemented 
+9. Extends the actuator/health endpoint to display dependencies status
 
 [0]: https://maven.apache.org/
 [1]: https://www.getpostman.com

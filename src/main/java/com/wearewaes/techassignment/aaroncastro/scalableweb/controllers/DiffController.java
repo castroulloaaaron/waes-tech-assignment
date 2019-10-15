@@ -20,7 +20,6 @@ import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
  * @since version 1.0.0
  */
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/v1/diff")
 public class DiffController {
 
