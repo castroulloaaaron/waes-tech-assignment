@@ -31,10 +31,15 @@ public class OrchestratorProcessor implements Processor {
      * @see com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor
      */
     @Override
-    public Map<String, String> process(Map<String, String> params) {
+    public Map<String, Object> process(Map<String, Object> params) {
         for (Processor processor : processors) {
             logger.info("calling processor {}", processor);
             params = processor.process(params);
+
+            // This allows to stop processing the processors chain
+            if (params.containsKey(STOP_FLAG)) {
+                break;
+            }
         }
         return params;
     }

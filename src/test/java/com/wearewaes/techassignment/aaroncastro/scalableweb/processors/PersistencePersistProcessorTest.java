@@ -61,7 +61,7 @@ public class PersistencePersistProcessorTest {
     public void persistsOnValidInput() {
         when(persistenceStorage.hasId(anyString())).thenReturn(false);
 
-        Map<String, String> result =  new PersistencePersistProcessor(persistenceStorage).execute(Map.of(ID, ID, BODY, body));
+        Map<String, Object> result =  new PersistencePersistProcessor(persistenceStorage).execute(Map.of(ID, ID, BODY, body));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");

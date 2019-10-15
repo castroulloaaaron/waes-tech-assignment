@@ -60,7 +60,7 @@ public class DecodeProcessorTest {
 
     @Test
     public void getDecodeStringOnValidInput() {
-        Map<String, String> result = new DecoderProcessor(base64Decoder).execute(Map.of(ID, ID, BODY, encodeMessage));
+        Map<String, Object> result = new DecoderProcessor(base64Decoder).execute(Map.of(ID, ID, BODY, encodeMessage));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");

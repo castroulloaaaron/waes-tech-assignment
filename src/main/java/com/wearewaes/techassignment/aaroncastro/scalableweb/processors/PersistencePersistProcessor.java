@@ -34,17 +34,17 @@ public class PersistencePersistProcessor extends  AbstractProcessor {
      * @throws IllegalStateException if the id is already on the storage
      */
     @Override
-    protected Map<String, String> execute(final Map<String, String> params) {
+    protected Map<String, Object> execute(final Map<String, Object> params) {
         notNull(params, "params map cannot be null");
-        notBlank(params.get(ID), "id cannot be null or empty");
-        notBlank(params.get(BODY), "body cannot be null or empty");
+        notBlank(params.get(ID).toString(), "id cannot be null or empty");
+        notBlank(params.get(BODY).toString(), "body cannot be null or empty");
 
-        if (persistenceStorage.hasId(params.get(ID))) {
+        if (persistenceStorage.hasId(params.get(ID).toString())) {
             logger.warn("storage already has id {}", params.get(ID));
             throw new IllegalStateException("body is already persisted under id: " + params.get(ID));
         }
 
-        persistenceStorage.set(params.get(ID), TwoItemsContainer.newInstance(params.get(ID), params.get(BODY)));
+        persistenceStorage.set(params.get(ID).toString(), TwoItemsContainer.newInstance(params.get(ID).toString(), params.get(BODY).toString()));
         return params;
     }
 }

@@ -59,7 +59,7 @@ public class JSONValidatorProcessorTest {
     public void getTrueOnValidInput() {
         when(jsonValidator.isValid(anyString())).thenReturn(true);
 
-        Map<String, String> result =  new JSONValidatorProcessor(jsonValidator).execute(Map.of(ID, ID, BODY, body));
+        Map<String, Object> result =  new JSONValidatorProcessor(jsonValidator).execute(Map.of(ID, ID, BODY, body));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");

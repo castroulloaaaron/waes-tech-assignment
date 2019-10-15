@@ -34,12 +34,12 @@ public class JSONValidatorProcessor extends AbstractProcessor {
      * @throws IllegalArgumentException is the body is not a valid JSON object
      */
     @Override
-    protected Map<String, String> execute(final Map<String, String> params) {
+    protected Map<String, Object> execute(final Map<String, Object> params) {
         notNull(params, "params map cannot be null");
-        notBlank(params.get(ID), "id cannot be null or empty");
-        notBlank(params.get(BODY), "body cannot be null or empty");
+        notBlank(params.get(ID).toString(), "id cannot be null or empty");
+        notBlank(params.get(BODY).toString(), "body cannot be null or empty");
 
-        if (!jsonValidator.isValid(params.get(BODY))) {
+        if (!jsonValidator.isValid(params.get(BODY).toString())) {
             logger.warn("invalid JSON object for id {} with body {}", params.get(ID), params.get(BODY));
             throw new IllegalArgumentException("body is not a valid JSON Object");
         }

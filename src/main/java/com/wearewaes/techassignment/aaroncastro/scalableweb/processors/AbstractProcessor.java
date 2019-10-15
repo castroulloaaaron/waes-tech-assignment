@@ -17,7 +17,7 @@ public abstract class AbstractProcessor implements Processor {
      * @param params Map with the parameters to execute the logic base on it's service(s)
      * @return the new state of the parameters for the next step/processor
      */
-    protected abstract Map<String, String> execute(final Map<String, String> params);
+    protected abstract Map<String, Object> execute(final Map<String, Object> params);
 
     /**
      * Encapsulate a general validation for the params Map and the execution call to process the business logic
@@ -25,9 +25,9 @@ public abstract class AbstractProcessor implements Processor {
      * @return the new state of the params after the execution of the Processor business logic
      */
     @Override
-    public final Map<String, String> process(Map<String, String> params) {
+    public final Map<String, Object> process(Map<String, Object> params) {
         notNull(params, "Parameter Map cannot be null");
-        notBlank(params.get(ID), "ID cannot be null or empty");
+        notBlank(params.get(ID).toString(), "ID cannot be null or empty");
 
         return execute(params);
     }
