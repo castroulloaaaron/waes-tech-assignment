@@ -28,7 +28,6 @@ public class JSONValidatorService implements JSONValidator {
         try {
             objectMapper.readTree(body);
         } catch(IOException e) {
-            logger.info("Invalid JSON object {}", body);
             return false;
         }
         return true;

@@ -31,4 +31,9 @@ public abstract class AbstractProcessor implements Processor {
 
         return execute(params);
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

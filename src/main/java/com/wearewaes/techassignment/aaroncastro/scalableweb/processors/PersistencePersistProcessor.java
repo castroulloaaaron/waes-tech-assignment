@@ -2,6 +2,8 @@ package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.persistence.PersistenceStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,7 @@ import static org.apache.commons.lang3.Validate.*;
  */
 @Component
 public class PersistencePersistProcessor extends  AbstractProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(PersistencePersistProcessor.class);
 
     private final PersistenceStorage persistenceStorage;
 
@@ -37,6 +40,7 @@ public class PersistencePersistProcessor extends  AbstractProcessor {
         notBlank(params.get(BODY), "body cannot be null or empty");
 
         if (persistenceStorage.hasId(params.get(ID))) {
+            logger.warn("storage already has id {}", params.get(ID));
             throw new IllegalStateException("body is already persisted under id: " + params.get(ID));
         }
 

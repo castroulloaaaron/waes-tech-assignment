@@ -1,6 +1,8 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.JSONValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,7 @@ import static org.apache.commons.lang3.Validate.notNull;
  */
 @Component
 public class JSONValidatorProcessor extends AbstractProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(JSONValidatorProcessor.class);
 
     private final JSONValidator jsonValidator;
 
@@ -37,6 +40,7 @@ public class JSONValidatorProcessor extends AbstractProcessor {
         notBlank(params.get(BODY), "body cannot be null or empty");
 
         if (!jsonValidator.isValid(params.get(BODY))) {
+            logger.warn("invalid JSON object for id {} with body {}", params.get(ID), params.get(BODY));
             throw new IllegalArgumentException("body is not a valid JSON Object");
         }
 

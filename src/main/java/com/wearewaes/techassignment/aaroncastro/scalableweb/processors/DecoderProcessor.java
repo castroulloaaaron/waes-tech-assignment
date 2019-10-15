@@ -1,6 +1,9 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.base64.Base64Decoder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +19,7 @@ import static org.apache.commons.lang3.Validate.notNull;
  */
 @Component
 public class DecoderProcessor extends AbstractProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(DecoderProcessor.class);
 
     private final Base64Decoder base64Decoder;
 

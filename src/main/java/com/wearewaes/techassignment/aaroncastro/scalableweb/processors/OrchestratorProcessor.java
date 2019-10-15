@@ -1,5 +1,8 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import static org.apache.commons.lang3.Validate.notNull;
  * @since version 1.0.0
  */
 public class OrchestratorProcessor implements Processor {
+    private static final Logger logger = LoggerFactory.getLogger(OrchestratorProcessor.class);
 
     private final List<Processor> processors;
 
@@ -29,6 +33,7 @@ public class OrchestratorProcessor implements Processor {
     @Override
     public Map<String, String> process(Map<String, String> params) {
         for (Processor processor : processors) {
+            logger.info("calling processor {}", processor);
             params = processor.process(params);
         }
         return params;
