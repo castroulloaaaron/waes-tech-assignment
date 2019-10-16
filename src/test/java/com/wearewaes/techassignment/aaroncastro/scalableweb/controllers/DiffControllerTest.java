@@ -8,9 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.DiffResultContainer.ResultTypes.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -31,8 +35,9 @@ public class DiffControllerTest {
                     .contentType(MediaType.TEXT_PLAIN)
                     .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest());
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -45,8 +50,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest());
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -59,8 +65,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isCreated());
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -73,8 +80,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isCreated());
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
         mockMvc.perform(
                 post("/v1/diff/{id}/left", "duplicated-01")
@@ -82,8 +90,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isConflict());
+                .andDo(print())
+                .andExpect(status().isConflict())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -96,8 +105,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest());
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -110,8 +120,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isBadRequest());
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -124,8 +135,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isCreated());
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -138,8 +150,9 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isCreated());
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
 
         mockMvc.perform(
                 post("/v1/diff/{id}/right", "duplicated-01")
@@ -147,7 +160,181 @@ public class DiffControllerTest {
                         .contentType(MediaType.TEXT_PLAIN)
                         .content(body)
         )
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(status().isConflict());
+                .andDo(print())
+                .andExpect(status().isConflict())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void askResultWithoutLeftSidePreviouslyPersistedTest() throws Exception {
+        final String body = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEifQ==";
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/right", "missing-left")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(body)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                get("/v1/diff/{id}", "missing-left")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void askResultWithoutRightSidePreviouslyPersistedTest() throws Exception {
+        final String body = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEifQ==";
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/left", "missing-right")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(body)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                get("/v1/diff/{id}", "missing-right")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void askResultWithoutAnySidePreviouslyPersistedTest() throws Exception {
+        mockMvc.perform(
+                get("/v1/diff/{id}", "missing-both-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    public void askResultWithEqualsSidesTest() throws Exception {
+        final String body = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEifQ==";
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/left", "equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(body)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/right", "equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(body)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                get("/v1/diff/{id}", "equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.resultStatus").value(EQUALS.toString()))
+                .andExpect(jsonPath("$.itemResultsContainer").isArray())
+                .andExpect(jsonPath("$.itemResultsContainer").isEmpty());
+    }
+
+    @Test
+    public void askResultWithNonEqualSizeTest() throws Exception {
+        final String leftBody = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEiLCAiaW50ZWdlciI6IDEsICJhcnJheSI6IFsxLDIsM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19";
+        final String rightBody = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEifQ==";
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/left", "non-equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(leftBody)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/right", "non-equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(rightBody)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                get("/v1/diff/{id}", "non-equal-sides")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.resultStatus").value(NOT_EQUAL.toString()))
+                .andExpect(jsonPath("$.itemResultsContainer").isArray())
+                .andExpect(jsonPath("$.itemResultsContainer").isEmpty());
+    }
+
+    @Test
+    public void askResultWithEqualSizeDifferentContentTest() throws Exception {
+        final String leftBody  = "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEiLCAiaW50ZWdlciI6IDEsICJhcnJheSI6IFsxLjksMi44OSwzLjc2NV0sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19";
+        final String rightBody = "eyJtZXNzYWdlIjogIkhpIE5ldGhlcmxhbmRzIDpEISEiLCAiaW50ZWdlciI6IDIsICJhcnJheSI6IFsxLjksMi44OSwzLjEyM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19";
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/left", "equal-sides-different-content")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(leftBody)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                post("/v1/diff/{id}/right", "equal-sides-different-content")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(rightBody)
+        )
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(
+                get("/v1/diff/{id}", "equal-sides-different-content")
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.resultStatus").value(EQUAL_SIZE_NOT_EQUAL_CONTENT.toString()))
+                .andExpect(jsonPath("$.itemResultsContainer").isArray())
+                .andExpect(jsonPath("$.itemResultsContainer").isNotEmpty())
+                .andExpect(jsonPath("$.itemResultsContainer[0].offset").isNumber())
+                .andExpect(jsonPath("$.itemResultsContainer[0].length").isNumber())
+                .andExpect(jsonPath("$.itemResultsContainer[1].offset").isNumber())
+                .andExpect(jsonPath("$.itemResultsContainer[1].length").isNumber())
+                .andExpect(jsonPath("$.itemResultsContainer[2].offset").isNumber())
+                .andExpect(jsonPath("$.itemResultsContainer[2].length").isNumber());
     }
 }

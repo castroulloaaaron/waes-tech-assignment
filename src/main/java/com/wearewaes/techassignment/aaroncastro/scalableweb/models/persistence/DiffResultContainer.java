@@ -21,19 +21,6 @@ public interface DiffResultContainer extends PersistenceModel {
      * Operation assignation after the comparison operation
      */
     enum ResultTypes {
-        EQUALS("Both JSON Objects are = size and = content"),
-        NOT_EQUAL("JSON objects has ≠ size"),
-        EQUAL_SIZE_NOT_EQUAL_CONTENT("Both JSON objects have = size but ≠ content");
-
-        private final String description;
-
-        ResultTypes(final String description) {
-            this.description = description;
-        }
-
-        @Override
-        public String toString() {
-            return description;
-        }
+        EQUALS, NOT_EQUAL, EQUAL_SIZE_NOT_EQUAL_CONTENT;
     }
 }

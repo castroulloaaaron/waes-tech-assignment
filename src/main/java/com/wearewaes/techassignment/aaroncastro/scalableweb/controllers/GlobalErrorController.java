@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 /**
  * Controller that intercepts known exceptions and updates the message and http code base on the failure scenario
  */
@@ -21,6 +23,7 @@ public class GlobalErrorController {
      */
     @ExceptionHandler({NullPointerException.class, IllegalArgumentException.class})
     public void handlePreconditionViolation(final Exception ex, final HttpServletResponse response) throws IOException {
+        response.setContentType(APPLICATION_JSON_VALUE);
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
 
@@ -32,6 +35,7 @@ public class GlobalErrorController {
      */
     @ExceptionHandler({IllegalStateException.class})
     public void handleDataStateViolation(final Exception ex, final HttpServletResponse response) throws IOException {
+        response.setContentType(APPLICATION_JSON_VALUE);
         response.sendError(HttpStatus.CONFLICT.value(), ex.getMessage());
     }
 
@@ -43,6 +47,7 @@ public class GlobalErrorController {
      */
     @ExceptionHandler({ClassCastException.class})
     public void handleDataTypeViolation(final Exception ex, final HttpServletResponse response) throws IOException {
+        response.setContentType(APPLICATION_JSON_VALUE);
         response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
     }
 }

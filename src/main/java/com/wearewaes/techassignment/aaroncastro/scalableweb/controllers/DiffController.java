@@ -2,6 +2,7 @@ package com.wearewaes.techassignment.aaroncastro.scalableweb.controllers;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.rest.Response;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor;
+import com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class DiffController {
 
     @Autowired
     private Processor persistHandler;
+
+    @Autowired
+    private Processor comparisonResultHandler;
 
     /**
      * Validates and creates(persists) the left item using the id and body parameters
@@ -67,7 +71,7 @@ public class DiffController {
     @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Object showDiffResult(@PathVariable final String id) {
-
-        return "";
+        final Map<ParameterKeys, Object> result = comparisonResultHandler.process(Map.of(ID, id));
+        return result.get(RESULT);
     }
 }
