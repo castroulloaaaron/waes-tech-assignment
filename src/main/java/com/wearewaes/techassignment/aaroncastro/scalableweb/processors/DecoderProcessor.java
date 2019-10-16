@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static org.apache.commons.lang3.Validate.notBlank;
-import static org.apache.commons.lang3.Validate.notNull;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
+import static org.apache.commons.lang3.Validate.*;
 
 /**
  * Processor that handles the base64 decoding logic for the message.
@@ -34,9 +34,11 @@ public class DecoderProcessor extends AbstractProcessor {
      * @return a new Map with the decode body and the id
      */
     @Override
-    protected Map<String, Object> execute(final Map<String, Object> params) {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) {
         notNull(params, "params map cannot be null");
+        notNull(params.get(ID), "id must be present on params");
         notBlank(params.get(ID).toString(), "id cannot be null or empty");
+        notNull(params.get(BODY), "id must be present on params");
         notBlank(params.get(BODY).toString(), "body cannot be null or empty");
 
         return Map.of(ID, params.get(ID), BODY, base64Decoder.decode(params.get(BODY).toString()));

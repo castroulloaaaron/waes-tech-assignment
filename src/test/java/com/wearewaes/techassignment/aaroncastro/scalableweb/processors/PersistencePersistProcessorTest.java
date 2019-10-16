@@ -1,6 +1,7 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.PersistenceModel;
+import com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.persistence.PersistenceStorage;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.BODY;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ID;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -61,14 +61,14 @@ public class PersistencePersistProcessorTest {
     public void persistsOnValidInput() {
         when(persistenceStorage.hasId(anyString())).thenReturn(false);
 
-        Map<String, Object> result =  new PersistencePersistProcessor(persistenceStorage).execute(Map.of(ID, ID, BODY, body));
+        Map<ParameterKeys, Object> result =  new PersistencePersistProcessor(persistenceStorage).execute(Map.of(ID, ID, BODY, body));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");
         assertEquals(ID, result.get(ID), "id value must be id");
         assertEquals(body, result.get(BODY), "body must be the original body");
-        verify(persistenceStorage).hasId(eq(ID));
-        verify(persistenceStorage).set(eq(ID), any(PersistenceModel.class));
+        verify(persistenceStorage).hasId(eq(ID.toString()));
+        verify(persistenceStorage).set(eq(ID.toString()), any(PersistenceModel.class));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -77,6 +77,6 @@ public class PersistencePersistProcessorTest {
 
         new PersistencePersistProcessor(persistenceStorage).execute(Map.of(ID, ID, BODY, body));
 
-        verify(persistenceStorage).hasId(eq(ID));
+        verify(persistenceStorage).hasId(eq(ID.toString()));
     }
 }

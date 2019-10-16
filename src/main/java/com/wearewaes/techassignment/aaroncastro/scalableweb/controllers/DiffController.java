@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.BODY;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ID;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT_SIDE;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT_SIDE;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
@@ -38,7 +37,7 @@ public class DiffController {
     @PostMapping(path = "/{id}/left", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Response saveLeft(@PathVariable final String id, @RequestBody final String body) {
-        persistHandler.process(Map.of(ID, LEFT + id, BODY, body));
+        persistHandler.process(Map.of(ID, LEFT_SIDE + id, BODY, body));
         return Response.newInstance(String.format("Message with id %s was created", id));
     }
 
@@ -54,7 +53,7 @@ public class DiffController {
     @PostMapping(path = "/{id}/right", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Response saveRight(@PathVariable final String id, @RequestBody final String body) {
-        persistHandler.process(Map.of(ID, RIGHT + id, BODY, body));
+        persistHandler.process(Map.of(ID, RIGHT_SIDE + id, BODY, body));
         return Response.newInstance(String.format("Message with id %s was created", id));
     }
 

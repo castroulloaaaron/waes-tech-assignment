@@ -1,5 +1,6 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
+import com.google.common.collect.ImmutableMap;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.DiffResultContainer;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.PersistenceModel;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.persistence.PersistenceStorage;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.apache.commons.lang3.Validate.*;
 
 /**
@@ -33,17 +35,22 @@ public class PersistenceDiffResponseFetchProcessor extends AbstractProcessor {
      * the same param map that it received
      */
     @Override
-    protected Map<String, Object> execute(Map<String, Object> params) {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) {
         notNull(params, "params must not be null");
-        notEmpty(params.get(ID).toString(), "id must not be null");
+        notNull(params.get(ID), "id must be present on params");
+        notBlank(params.get(ID).toString(), "id must not be null or empty");
 
         final String id = params.get(ID).toString();
 
         if (persistenceStorage.hasId(id)) {
-            params.put(STOP_FLAG, extractResult(persistenceStorage.get(id).orElse(null), id));
+            return ImmutableMap.<ParameterKeys, Object>builder()
+                    .putAll(params)
+                    .put(STOP_FLAG, STOP_FLAG)
+                    .put(RESULT, extractResult(persistenceStorage.get(id).orElse(null), id))
+                    .build();
         }
 
-        return params;
+        return ImmutableMap.<ParameterKeys, Object>builder().putAll(params).build();
     }
 
     /**

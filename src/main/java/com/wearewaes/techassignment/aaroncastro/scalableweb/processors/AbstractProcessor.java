@@ -2,6 +2,8 @@ package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
 import java.util.Map;
 
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
+
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
 
@@ -17,7 +19,7 @@ public abstract class AbstractProcessor implements Processor {
      * @param params Map with the parameters to execute the logic base on it's service(s)
      * @return the new state of the parameters for the next step/processor
      */
-    protected abstract Map<String, Object> execute(final Map<String, Object> params);
+    protected abstract Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params);
 
     /**
      * Encapsulate a general validation for the params Map and the execution call to process the business logic
@@ -25,9 +27,9 @@ public abstract class AbstractProcessor implements Processor {
      * @return the new state of the params after the execution of the Processor business logic
      */
     @Override
-    public final Map<String, Object> process(Map<String, Object> params) {
+    public final Map<ParameterKeys, Object> process(Map<ParameterKeys, Object> params) {
         notNull(params, "Parameter Map cannot be null");
-        notBlank(params.get(ID).toString(), "ID cannot be null or empty");
+        notNull(params.get(ID), "ID cannot be null");
 
         return execute(params);
     }

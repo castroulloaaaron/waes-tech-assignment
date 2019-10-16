@@ -8,9 +8,13 @@ import java.util.Map;
  * @since version 1.0.0
  */
 public interface Processor {
-    String ID = "id";
-    String BODY = "body";
-    String STOP_FLAG = "stop";
+
+    /**
+     * Common key on the params map that uses/returns the process method
+     */
+    enum ParameterKeys {
+        ID, BODY, LEFT, RIGHT, STOP_FLAG, RESULT
+    }
 
     /**
      * It's the entry point to call the business logic execution on each Processor
@@ -19,5 +23,5 @@ public interface Processor {
      * @throws NullPointerException if the params is null, or an expected key inside the map
      * @throws IllegalArgumentException id the value of the param is not valid
      */
-    Map<String, Object> process(Map<String, Object> params) throws NullPointerException, IllegalArgumentException;
+    Map<ParameterKeys, Object> process(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException;
 }

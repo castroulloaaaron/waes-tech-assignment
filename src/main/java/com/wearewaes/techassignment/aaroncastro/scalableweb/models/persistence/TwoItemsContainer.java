@@ -3,8 +3,8 @@ package com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence;
 public interface TwoItemsContainer extends PersistenceModel {
 
     enum Sides {
-        LEFT("left-"),
-        RIGHT("right-");
+        LEFT_SIDE("left-"),
+        RIGHT_SIDE("right-");
 
         private final String id;
 

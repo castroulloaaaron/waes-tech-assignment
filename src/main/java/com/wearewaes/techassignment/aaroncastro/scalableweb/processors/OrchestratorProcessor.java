@@ -1,11 +1,13 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
+import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.STOP_FLAG;
 import static org.apache.commons.lang3.Validate.notNull;
 
 /**
@@ -31,10 +33,16 @@ public class OrchestratorProcessor implements Processor {
      * @see com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor
      */
     @Override
-    public Map<String, Object> process(Map<String, Object> params) {
+    public Map<ParameterKeys, Object> process(Map<ParameterKeys, Object> params) {
+        notNull(params);
+
+        params = ImmutableMap.<ParameterKeys, Object>builder().putAll(params).build();
         for (Processor processor : processors) {
             logger.info("calling processor {}", processor);
-            params = processor.process(params);
+            params = ImmutableMap
+                    .<ParameterKeys, Object>builder()
+                    .putAll(processor.process(params))
+                    .build();
 
             // This allows to stop processing the processors chain
             if (params.containsKey(STOP_FLAG)) {

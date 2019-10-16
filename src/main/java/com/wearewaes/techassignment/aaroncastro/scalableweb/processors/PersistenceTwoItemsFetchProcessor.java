@@ -1,5 +1,6 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.processors;
 
+import com.google.common.collect.ImmutableMap;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.PersistenceModel;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.persistence.PersistenceStorage;
@@ -10,8 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.LEFT_SIDE;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.TwoItemsContainer.Sides.RIGHT_SIDE;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
@@ -40,13 +42,14 @@ public class PersistenceTwoItemsFetchProcessor extends AbstractProcessor {
      * @throws IllegalArgumentException if the id is empty
      */
     @Override
-    protected Map<String, Object> execute(Map<String, Object> params) throws NullPointerException, IllegalArgumentException {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException {
         notNull(params, "params map cannot be null");
-        notBlank(params.get(ID).toString(), "id cannot be null or empty");
+        notNull(params.get(ID), "id must be present on params");
+        notBlank(params.get(ID).toString(), "id cannot be null");
 
         final String id = params.get(ID).toString();
-        final String leftId = LEFT + id;
-        final String rightId = RIGHT + id;
+        final String leftId = LEFT_SIDE + id;
+        final String rightId = RIGHT_SIDE + id;
 
         if (!persistenceStorage.hasId(leftId)) {
             logger.warn("storage does not have id {}", leftId);
@@ -58,10 +61,11 @@ public class PersistenceTwoItemsFetchProcessor extends AbstractProcessor {
             throw new IllegalArgumentException("the right JSON object with id: " + id + ", was not persisted");
         }
 
-        params.put(LEFT.toString(), extractBody(persistenceStorage.get(leftId).orElse(null), LEFT.toString(), id));
-        params.put(RIGHT.toString(), extractBody(persistenceStorage.get(rightId).orElse(null), RIGHT.toString(), id));
-
-        return params;
+        return ImmutableMap.<ParameterKeys, Object>builder()
+                .putAll(params)
+                .put(LEFT, extractBody(persistenceStorage.get(leftId).orElse(null), LEFT_SIDE.toString(), id))
+                .put(RIGHT, extractBody(persistenceStorage.get(rightId).orElse(null), RIGHT_SIDE.toString(), id))
+                .build();
     }
 
     /**

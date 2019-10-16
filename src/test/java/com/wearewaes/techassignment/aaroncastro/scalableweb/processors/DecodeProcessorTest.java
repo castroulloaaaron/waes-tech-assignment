@@ -5,12 +5,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.base64.Base64Decoder;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.BODY;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ID;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -60,7 +60,7 @@ public class DecodeProcessorTest {
 
     @Test
     public void getDecodeStringOnValidInput() {
-        Map<String, Object> result = new DecoderProcessor(base64Decoder).execute(Map.of(ID, ID, BODY, encodeMessage));
+        Map<ParameterKeys, Object> result = new DecoderProcessor(base64Decoder).execute(Map.of(ID, ID, BODY, encodeMessage));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");

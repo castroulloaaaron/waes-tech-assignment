@@ -5,12 +5,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation.JSONValidator;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Map;
 
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.BODY;
-import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ID;
+import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -59,7 +59,7 @@ public class JSONValidatorProcessorTest {
     public void getTrueOnValidInput() {
         when(jsonValidator.isValid(anyString())).thenReturn(true);
 
-        Map<String, Object> result =  new JSONValidatorProcessor(jsonValidator).execute(Map.of(ID, ID, BODY, body));
+        Map<ParameterKeys, Object> result =  new JSONValidatorProcessor(jsonValidator).execute(Map.of(ID, ID, BODY, body));
 
         assertNotNull(result, "params must not be null");
         assertEquals(2, result.size(), "params size must be 2");
