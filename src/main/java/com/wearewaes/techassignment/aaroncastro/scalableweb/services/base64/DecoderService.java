@@ -7,6 +7,10 @@ import static org.apache.commons.codec.binary.Base64.isBase64;
 
 import static org.apache.commons.lang3.Validate.*;
 
+/**
+ * Class that decodes base64 String using the apache codec library
+ * @since version 1.0.0
+ */
 @Service
 public class DecoderService implements Base64Decoder {
 

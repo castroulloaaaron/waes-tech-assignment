@@ -32,10 +32,11 @@ public class JSONValidatorProcessor extends AbstractProcessor {
      * Contains the logic to call the JSONValidator service to check if the body is a valid JSON object
      * @param params Map with the parameters to execute the logic base on it's service(s)
      * @return the same Map if the body is a valid JSON Object
-     * @throws IllegalArgumentException is the body is not a valid JSON object
+     * @throws NullPointerException if the params or the ID or BODY are null
+     * @throws IllegalArgumentException if ID or BODY are empty
      */
     @Override
-    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException {
         notNull(params, "params map cannot be null");
         notNull(params.get(ID), "id must be present on params");
         notBlank(params.get(ID).toString(), "id cannot be null or empty");

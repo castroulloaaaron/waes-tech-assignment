@@ -5,7 +5,8 @@ import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.P
 import java.util.Optional;
 
 /**
- * It contains the basic methods get, set, hasKey that allows to store, check and retrieve a value base on it's key/id
+ * Interface that contains the basic methods get, set, hasKey that allows to store, check and retrieve a value base on
+ * it's key/id
  * @since version 1.0.0
  */
 public interface PersistenceStorage {

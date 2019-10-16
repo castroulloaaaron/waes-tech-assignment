@@ -2,6 +2,11 @@ package com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence;
 
 import java.util.List;
 
+/**
+ * Interface that exposes the status and differences of the comparison operation
+ * Contains also the enum with the status operation values
+ * @since version 1.0.0
+ */
 public interface DiffResultContainer extends PersistenceModel {
     /**
      * Get the List of Items Results after the comparison between 2 Objects

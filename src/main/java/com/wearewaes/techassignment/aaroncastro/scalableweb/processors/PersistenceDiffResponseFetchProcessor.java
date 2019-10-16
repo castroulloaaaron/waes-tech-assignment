@@ -36,9 +36,11 @@ public class PersistenceDiffResponseFetchProcessor extends AbstractProcessor {
      * @param params Map with the parameters to execute the logic base on it's service(s)
      * @return params object with the DiffResult object inside under the STOP_FLAG key if was previously persisted, else
      * the same param map that it received
+     * @throws NullPointerException if the params or the ID are null
+     * @throws IllegalArgumentException if ID is empty
      */
     @Override
-    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException{
         notNull(params, "params must not be null");
         notNull(params.get(ID), "id must be present on params");
         notBlank(params.get(ID).toString(), "id must not be null or empty");

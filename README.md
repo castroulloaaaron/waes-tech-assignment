@@ -37,6 +37,11 @@ mvn clean test
 mvn clean spring-boot:run 
 ```
 
+Logic Summary
+-------------
+There are
+
+
 Useful application urls
 -----------------------
 

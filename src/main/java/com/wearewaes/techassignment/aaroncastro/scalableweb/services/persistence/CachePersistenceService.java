@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.apache.commons.lang3.Validate.*;
 
 /**
- * Cached Persistence Storage implementation using the Google Guava Cache implementation
+ * Class implementing a Cached Persistence Storage implementation using the Google Guava Cache implementation
  * Requires the Cache instance
  * @since 1.0.0
  */

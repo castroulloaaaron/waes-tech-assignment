@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.Validate.notBlank;
 
 /**
  * Message to be display to the user when there is an insertion of a Diff Item
+ * @since version 1.0.0
  */
 public class Response {
     private final String message;

@@ -51,6 +51,11 @@ public class ProcessorsConfiguration {
         ));
     }
 
+    /**
+     * Creates the Comparison Fetch flow or steps to get and or calculate the result
+     * @return An Orchestrator processor with a list of steps that needs to be follow in order to get and or calculate
+     * the result
+     */
     @Bean
     public Processor comparisonResultHandler() {
         return new OrchestratorProcessor(List.of(

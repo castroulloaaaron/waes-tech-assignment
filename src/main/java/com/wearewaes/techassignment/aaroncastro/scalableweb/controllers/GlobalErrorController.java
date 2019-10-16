@@ -10,7 +10,9 @@ import java.io.IOException;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
- * Controller that intercepts known exceptions and updates the message and http code base on the failure scenario
+ * Class that implements the Controller that intercepts known exceptions and updates the message and http code base on
+ * the failure scenario
+ * @since version 1.0.0
  */
 @RestControllerAdvice
 public class GlobalErrorController {
@@ -40,7 +42,7 @@ public class GlobalErrorController {
     }
 
     /**
-     * Handles ClassCastException sending the 500 error code Conflict
+     * Handles ClassCastException sending the 500 error code Internal Server Error
      * @param ex Exception thrown by any process or service
      * @param response HttpServletResponse object that contains the information to be sent to the user
      * @throws IOException if the sendError call fails

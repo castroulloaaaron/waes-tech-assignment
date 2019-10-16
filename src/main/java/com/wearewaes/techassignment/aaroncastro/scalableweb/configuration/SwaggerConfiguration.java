@@ -13,7 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 
 /**
- * Creates the configuration beans to expose the documentation using the Swagger utility/libraries.
+ * Class that creates the configuration beans to expose the documentation using the Swagger utility/libraries.
+ * @since version 1.0.0
  */
 @Configuration
 @EnableSwagger2

@@ -45,7 +45,7 @@ public class PersistenceTwoItemsFetchProcessor extends AbstractProcessor {
     protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException {
         notNull(params, "params map cannot be null");
         notNull(params.get(ID), "id must be present on params");
-        notBlank(params.get(ID).toString(), "id cannot be null");
+        notBlank(params.get(ID).toString(), "id cannot be null or empty");
 
         final String id = params.get(ID).toString();
         final String leftId = LEFT_SIDE + id;
@@ -80,16 +80,18 @@ public class PersistenceTwoItemsFetchProcessor extends AbstractProcessor {
      */
     private String extractBody(final PersistenceModel model, final String twoModelSide, final String id) throws NullPointerException, IllegalStateException, ClassCastException {
         notNull(model, "model must not be null");
-        notBlank(twoModelSide, "twoModelSide must not be empty");
-        notBlank(id, "twoModelSide' id must not be empty");
+        notBlank(twoModelSide, "twoModelSide must not be null or empty");
+        notBlank(id, "twoModelSide' id must not be null or empty");
 
         if (!(model instanceof TwoItemsContainer)) {
+            logger.error("the {}{} is not a TwoItemsContainer", twoModelSide, id);
             throw new ClassCastException("There was a persistent error with the " + twoModelSide + " part of the JSON for id " + id);
         }
 
         final String body = ((TwoItemsContainer) model).getBody();
         if (isBlank(body)) {
-            throw new IllegalStateException("The body for the " + twoModelSide + " part of the JSON for id " + id + " is blank");
+            logger.error("the body for {}{} is null or empty", twoModelSide, id);
+            throw new IllegalStateException("The body for the " + twoModelSide + " part of the JSON for id " + id + " is null or empty");
         }
 
         return body;

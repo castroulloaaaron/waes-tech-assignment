@@ -1,13 +1,13 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.services.json.validation;
 
 /**
- * It contains a single method that transforms a String to the Jackson JsonNode implementation if the body is valid
+ * Interface that contains a single method that transforms a String to the Jackson JsonNode implementation if the body
+ * is valid
  * @since version 1.0.0
  */
 public interface JSONValidator {
     /**
      * Validates that the body is a valid JSON object
-     *
      * @param body String with the JSON String
      * @return true if is a valid JSON object
      * @throws NullPointerException     if the body is null

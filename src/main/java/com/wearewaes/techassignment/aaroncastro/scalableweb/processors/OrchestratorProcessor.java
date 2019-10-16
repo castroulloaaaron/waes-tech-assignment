@@ -30,10 +30,11 @@ public class OrchestratorProcessor implements Processor {
      * Contains the logic to call in sequence each of the Processors of it's List
      * @param params Initial Map of params that will be executed by the Processors on the List
      * @return the last state of the params after went through all the processors
+     * @throws NullPointerException if params is null
      * @see com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor
      */
     @Override
-    public Map<ParameterKeys, Object> process(Map<ParameterKeys, Object> params) {
+    public Map<ParameterKeys, Object> process(Map<ParameterKeys, Object> params) throws NullPointerException {
         notNull(params);
 
         params = ImmutableMap.<ParameterKeys, Object>builder().putAll(params).build();

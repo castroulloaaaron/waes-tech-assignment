@@ -1,7 +1,7 @@
 package com.wearewaes.techassignment.aaroncastro.scalableweb.services.base64;
 
 /**
- * It contains a single method that must decode a base64 String if the String is valid
+ * Interface that contains a single method that must decode a base64 String if the String is valid
  * @since version 1.0.0
  */
 public interface Base64Decoder {

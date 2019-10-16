@@ -10,8 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Creates the Cache instances to store the items to be compare (base on the id from the request) and the result of the
- * comparison operation (also base on the id from the request)
+ * Class that creates the Cache instances to store the items to be compare (base on the id from the request) and the
+ * result of the comparison operation (also base on the id from the request)
+ * @since version 1.0.0
  */
 @Configuration
 public class CacheConfiguration {

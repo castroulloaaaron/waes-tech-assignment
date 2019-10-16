@@ -10,6 +10,11 @@ import java.util.Map;
 import static com.wearewaes.techassignment.aaroncastro.scalableweb.processors.Processor.ParameterKeys.*;
 import static org.apache.commons.lang3.Validate.*;
 
+/**
+ * Processor that handles the comparison logic between the right and left objects
+ * Requires a JSONComparator service
+ * @since version 1.0.0
+ */
 @Component
 public class JSONComparatorProcessor extends AbstractProcessor {
 
@@ -20,8 +25,15 @@ public class JSONComparatorProcessor extends AbstractProcessor {
         this.jsonComparator = jsonComparator;
     }
 
+    /**
+     * Calls the compare method of the JSONComparator service and stores the result on the params map
+     * @param params Map with the parameters to execute the logic base on it's service(s)
+     * @return a copy of the map params with the result inside
+     * @throws NullPointerException if the params or ID or LEFT or RIGHT are null
+     * @throws IllegalArgumentException if ID or LEFT or RIGHT are empty
+     */
     @Override
-    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) {
+    protected Map<ParameterKeys, Object> execute(final Map<ParameterKeys, Object> params) throws NullPointerException, IllegalArgumentException {
         notNull(params, "params map cannot be null");
         notNull(params.get(ID), "id must be present on params");
         notBlank(params.get(ID).toString(), "id cannot be null or empty");

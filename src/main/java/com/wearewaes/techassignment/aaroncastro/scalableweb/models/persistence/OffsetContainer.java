@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import static org.apache.commons.lang3.Validate.isTrue;
 
+/**
+ * Class that contains the comparison insight (offset/length)
+ * @since version 1.0.0
+ */
 public class OffsetContainer implements ItemResultContainer {
 
     @JsonProperty("offset")
@@ -15,13 +19,13 @@ public class OffsetContainer implements ItemResultContainer {
 
     @JsonCreator
     public OffsetContainer( final int offset) {
-        isTrue(offset >= 0, "Offset must be bigger than 0");
+        isTrue(offset >= 0, "Offset must be bigger or equal than 0");
 
         this.offset = offset;
     }
 
     public void setLength(int length) {
-        isTrue(offset >= 0, "length must be bigger than 0");
+        isTrue(length > 0, "length must be bigger than 0");
 
         this.length = length;
     }

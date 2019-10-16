@@ -16,18 +16,22 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
 /**
- * Rest Controller that accepts the User input and expose the diff comparison result base on the id parameter
+ * Class that implements the Rest Controller that accepts the User input and expose the diff comparison result base on
+ * the id parameter
  * @since version 1.0.0
  */
 @RestController
 @RequestMapping("/v1/diff")
 public class DiffController {
 
-    @Autowired
     private Processor persistHandler;
+    private Processor comparisonResultHandler;
 
     @Autowired
-    private Processor comparisonResultHandler;
+    public DiffController(final Processor persistHandler, final Processor comparisonResultHandler) {
+        this.persistHandler = persistHandler;
+        this.comparisonResultHandler = comparisonResultHandler;
+    }
 
     /**
      * Validates and creates(persists) the left item using the id and body parameters
