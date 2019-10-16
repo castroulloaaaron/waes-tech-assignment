@@ -38,10 +38,11 @@ public class OffsetJSONComparatorService implements JSONComparator {
         OffsetContainer offsetContainer = null;
 
         for (int i = 0; i < left.length(); i++) {
-            if (left.charAt(i) != right.charAt(i)) {
+            boolean equalCharacters = left.charAt(i) == right.charAt(i);
+            if (!equalCharacters && offsetContainer == null) {
                 // Here we need to start 'recoding' since there is a diff
                 offsetContainer = new OffsetContainer(i);
-            } else if (offsetContainer != null || (i + 1) == left.length()) {
+            } else if (equalCharacters && offsetContainer != null) {
                 // we need to store the offsetContainer and set it as null again
                 offsetContainer.setLength(i - offsetContainer.getOffset());
                 diffs.add(offsetContainer);
