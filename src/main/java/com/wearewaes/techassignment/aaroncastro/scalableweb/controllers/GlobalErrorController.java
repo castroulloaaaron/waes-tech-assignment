@@ -20,7 +20,7 @@ public class GlobalErrorController {
      * @throws IOException if the sendError call fails
      */
     @ExceptionHandler({NullPointerException.class, IllegalArgumentException.class})
-    public void handlePreconditionViolation(Exception ex, HttpServletResponse response) throws IOException {
+    public void handlePreconditionViolation(final Exception ex, final HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
     }
 
@@ -31,7 +31,18 @@ public class GlobalErrorController {
      * @throws IOException if the sendError call fails
      */
     @ExceptionHandler({IllegalStateException.class})
-    public void handleDataStateViolation(Exception ex, HttpServletResponse response) throws IOException {
+    public void handleDataStateViolation(final Exception ex, final HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.CONFLICT.value(), ex.getMessage());
+    }
+
+    /**
+     * Handles ClassCastException sending the 500 error code Conflict
+     * @param ex Exception thrown by any process or service
+     * @param response HttpServletResponse object that contains the information to be sent to the user
+     * @throws IOException if the sendError call fails
+     */
+    @ExceptionHandler({ClassCastException.class})
+    public void handleDataTypeViolation(final Exception ex, final HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
     }
 }
