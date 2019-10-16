@@ -25,6 +25,18 @@ public class ProcessorsConfiguration {
     @Autowired
     private PersistencePersistProcessor persistencePersistProcessor;
 
+    @Autowired
+    private PersistenceDiffResponseFetchProcessor persistenceDiffResponseFetchProcessor;
+
+    @Autowired
+    private PersistenceTwoItemsFetchProcessor persistenceTwoItemsFetchProcessor;
+
+    @Autowired
+    private JSONComparatorProcessor jsonComparatorProcessor;
+
+    @Autowired
+    private PersistenceDiffResultProcessor persistenceDiffResultProcessor;
+
     /**
      * Creates the Persist flow or steps to persist data
      * @return An Orchestrator processor with a list of steps that needs to be follow in order to validate and persist
@@ -32,6 +44,20 @@ public class ProcessorsConfiguration {
      */
     @Bean
     public Processor persistHandler() {
-        return new OrchestratorProcessor(List.of(decoderProcessor, jsonValidatorProcessor, persistencePersistProcessor));
+        return new OrchestratorProcessor(List.of(
+                decoderProcessor,
+                jsonValidatorProcessor,
+                persistencePersistProcessor
+        ));
+    }
+
+    @Bean
+    public Processor comparisonResultHandler() {
+        return new OrchestratorProcessor(List.of(
+                persistenceDiffResponseFetchProcessor,
+                persistenceTwoItemsFetchProcessor,
+                jsonComparatorProcessor,
+                persistenceDiffResultProcessor
+        ));
     }
 }

@@ -23,4 +23,12 @@ public class ProcessorsConfigurationTest {
         Processor persistHandler = processorsConfiguration.persistHandler();
         assertNotNull(persistHandler, "persistHandler must not be null");
     }
+
+    @Test
+    public void createComparisonResultHandler() {
+        assertNotNull(processorsConfiguration, "processorsConfiguration must not be null");
+
+        Processor comparisonResultHandler = processorsConfiguration.comparisonResultHandler();
+        assertNotNull(comparisonResultHandler, "comparisonResultHandler must not be null");
+    }
 }
