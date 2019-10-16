@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.DiffResultContainer;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.models.persistence.PersistenceModel;
 import com.wearewaes.techassignment.aaroncastro.scalableweb.services.persistence.PersistenceStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,7 @@ import static org.apache.commons.lang3.Validate.*;
  */
 @Component
 public class PersistenceDiffResponseFetchProcessor extends AbstractProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(PersistenceDiffResponseFetchProcessor.class);
 
     private final PersistenceStorage persistenceStorage;
 
@@ -67,9 +70,11 @@ public class PersistenceDiffResponseFetchProcessor extends AbstractProcessor {
         notBlank(id, "id must not be empty");
 
         if (!(model instanceof DiffResultContainer)) {
+            logger.error("Incorrect persisted model under id {}", id);
             throw new ClassCastException("There was a persistent error with the diff result of for id " + id);
         }
 
+        logger.info("Fetch the DiffResult object with id {}", id);
         return (DiffResultContainer) model;
     }
 }
