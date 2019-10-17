@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "0d30299f-59de-44ca-a475-3d7b0643063e",
+		"name": "WAES-Tech-Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Left for equal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIE5ldGhlcmxhbmRzIDpEISEiLCAiaW50ZWdlciI6IDIsICJhcnJheSI6IFsxLjksMi44OSwzLjEyM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-equal-test/left",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-equal-test",
+						"left"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal\nCreate Right for equal\nGet Diff for equal\n\nHelper to test the equals operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Left for equal size different content",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "text/plain"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIE5ldGhlcmxhbmRzIDpEISEiLCAiaW50ZWdlciI6IDIsICJhcnJheSI6IFsxLjksMi44OSwzLjEyM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-equal-size-different-content-test/left",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-equal-size-different-content-test",
+						"left"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal size different content\nCreate Right for equal size different content\nGet Diff for equal size different content\n\nHelper to test the equal size different content operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Left for not equal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEiLCAiaW50ZWdlciI6IDEsICJhcnJheSI6IFsxLDIsM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-not-equal-size-test/left",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-not-equal-size-test",
+						"left"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for not equal\nCreate Right for not equal\nGet Diff for not equal\n\nHelper to test the not equals operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Right for equal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIE5ldGhlcmxhbmRzIDpEISEiLCAiaW50ZWdlciI6IDIsICJhcnJheSI6IFsxLjksMi44OSwzLjEyM10sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-equal-test/right",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-equal-test",
+						"right"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal\nCreate Right for equal\nGet Diff for equal\n\nHelper to test the equals operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Right for equal size different content",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEiLCAiaW50ZWdlciI6IDEsICJhcnJheSI6IFsxLjksMi44OSwzLjc2NV0sICJvYmplY3QiOiB7ICJhcnJheSI6IFsgeyJib29sZWFuIjogdHJ1ZX0sIHsibnVsbCI6IG51bGx9XX19"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-equal-size-different-content-test/right",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-equal-size-different-content-test",
+						"right"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal size different content\nCreate Right for equal size different content\nGet Diff for equal size different content\n\nHelper to test the equal size different content operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Right for not equal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "eyJtZXNzYWdlIjogIkhpIGZyb20gQ29zdGEgUmljYSEifQ=="
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-not-equal-size-test/right",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-not-equal-size-test",
+						"right"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for not equal\nCreate Right for not equal\nGet Diff for not equal\n\nHelper to test the not equals operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Diff for equal size different content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"3"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal size different content\nCreate Right for equal size different content\nGet Diff for equal size different content\n\nHelper to test the equal size different content operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Diff for not equal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"2"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for not equal\nCreate Right for not equal\nGet Diff for not equal\n\nHelper to test the not equals operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Diff for equal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/v1/diff/postman-equal-test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"diff",
+						"postman-equal-test"
+					]
+				},
+				"description": "Part of the collection:\nCreate Left for equal\nCreate Right for equal\nGet Diff for equal\n\nHelper to test the equals operation"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
