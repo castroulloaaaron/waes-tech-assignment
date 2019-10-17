@@ -41,6 +41,12 @@ Logic Summary
 -------------
 There are
 
+Testing
+-------
+You can use any tool you prefer (postman, curl, etc) to test the application. There is 
+[a postman collection](/utilities/postman/WAES-Tech-Assignment.postman_collection.json) ready to be used that shows the 
+body, headers, and URL that the application uses to expose the functionality 
+
 
 Useful application urls
 -----------------------
