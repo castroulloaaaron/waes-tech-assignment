@@ -73,8 +73,7 @@ Testing
 -------
 You can use any tool you prefer (postman, curl, etc) to test the application. There is 
 [a postman collection](/utilities/postman/WAES-Tech-Assignment.postman_collection.json) ready to be used that shows the 
-body, headers, and URL that the application uses to expose the functionality 
-
+body, headers, and URL that the application uses to expose the functionality. [Here][2] is an example of how to import a Postman Collection.
 
 Useful application urls
 -----------------------
@@ -108,3 +107,4 @@ Possible Improvements (the nice to have list)
 
 [0]: https://maven.apache.org/
 [1]: https://www.getpostman.com
+[2]: https://learning.getpostman.com/docs/postman/collection_runs/using_environments_in_collection_runs/
