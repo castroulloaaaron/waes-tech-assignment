@@ -19,6 +19,7 @@ server:
       enabled: true
       directory: logs
     basedir:
+    max-http-post-size: 256KB
 
 cache:
   maxSize: 10000
